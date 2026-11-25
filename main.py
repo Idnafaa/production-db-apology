@@ -19,6 +19,8 @@ def main():
     text = APOLOGY.strip()
     if not 1 <= len(text) <= 200:
         raise ValueError(f"apology is {len(text)} chars, must be 1-200")
+    if "\n" in text or "\r" in text:
+        raise ValueError("apology must be a single line")
     outdir = "/output"
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, "entry.txt"), "w", encoding="utf-8") as f:
